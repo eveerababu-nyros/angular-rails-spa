@@ -1,15 +1,13 @@
-<h3>Rails4 + AngularJS </h3>
+<h3>Rails + AngularJS </h3>
 
-Check demo app <a href="http://rails4-angular-spa.herokuapp.com">here</a>.
+Check demo app <a href="http://rails-angular-spa.herokuapp.com">here</a>.
 
-1. CRUD example using Rails4 + AngularJS
+ Here I have used User module and Exam module.
  
-   <p>In this app I given example of how to create CRUD operation using Rails4 with AngularJS.</p>
+   <p>In User module I have provided all CRUD operations in a single page, created a custom directive called modalDialog to enable modal box effect.</p>
 
-2. Create nested form using AngularJS
-
- </p>When we need to create nested form in rails, then we used nested_form gem. But if you using AngularJS as frontend then you can't use that.</p>
-<p>When you want nested form to using AngularJS, you need to write your own code. In this app I given sample code for nested form.</p>
+  </p>In Exam module I have provided 10 questions with options and right side you can see results of activiy.</p>
+  <p>When you want nested form to using AngularJS, you need to write your own code. In this app I given sample code for nested form.</p>
 
 <h3>Thanks</h3>
 <p>Veeru</p>
