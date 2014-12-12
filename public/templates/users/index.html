@@ -70,7 +70,7 @@
                     <td>{{user.first_name | capitalize}}</td>
                     <td>{{user.email}}</td>
                     <td>
-                        <a href="javaScript:void(0)" ng-click="toggleModal(user.id)"><img src="/assets/show.png"></a> |<a href="#/users/{{user.id}}/edit"><img src="/assets/edit.png"></a> | <a href="" ng-click="deleteUser(user.id)"><img src="/assets/delete.png"></a>
+                        <a href="javaScript:void(0)" ng-click="toggleModal(user.id)"><img src="/assets/show.png" title="click to view User"></a> |<a href="#/users/{{user.id}}/edit"><img src="/assets/edit.png" title="click to edit User"></a> | <a href="" ng-click="deleteUser(user.id)"><img src="/assets/delete.png" title="click to delete User"></a>
                     </td>
                 </tr>
             </table>

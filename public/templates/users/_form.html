@@ -36,7 +36,7 @@
                 <input type="text" class="form-control" ng-model="address.street1" placeholder="Address 1"/>
             </div>
             <div class="col-md-1">
-                <a ng-click="removeAddress($index, user)" class="btn btn-xs btn-danger">X</a>
+                <a ng-click="removeAddress($index, user)" class="btn btn-xs btn-danger" title="Click to remove Address">X</a>
             </div>
         </div>
         <div class="form-group">
@@ -75,7 +75,7 @@
 </div>
 <div class="form-group">
     <div class="col-md-offset-12">
-        <a ng-click="addAddress()" class="btn btn-success btn-xs">+ Add address </a>
+        <a ng-click="addAddress()" class="btn btn-success btn-xs" title="Click to add another Address">+ Add address </a>
     </div>
 </div>
 
