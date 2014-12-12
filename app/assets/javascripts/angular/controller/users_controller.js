@@ -148,7 +148,12 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
               }
             break;
         case "3":
-            $scope.no_of_question = $scope.no_of_question + 1;
+              q3 = q3+1;
+              if(q3 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
+            
             if(ans == "D" && a3 == 0){
               a3 = a3 + 1;
                 if($scope.correct_answred == 0){
@@ -164,7 +169,11 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
               }
             break;
         case "4":
-            $scope.no_of_question = $scope.no_of_question + 1;
+            q4 = q4+1;
+              if(q4 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
             if(ans == "D" && a4 == 0){
               a4 = a4 + 1;
                 if($scope.correct_answred == 0){
@@ -180,7 +189,11 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
               }
             break;
         case "5":
-            $scope.no_of_question = $scope.no_of_question + 1;
+            q5 = q5+1;
+              if(q5 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
             if(ans == "B" && a5 == 0){
               a5 = a5 + 1;
                 if($scope.correct_answred == 0){
@@ -196,7 +209,11 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
               }
             break;
         case "6":
-            $scope.no_of_question = $scope.no_of_question + 1;
+            q6 = q6+1;
+              if(q6 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
             if(ans == "C" && a6 == 0){
               a6 = a6 + 1;
                 if($scope.correct_answred == 0){
@@ -212,7 +229,11 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
               }
             break;
         case "7":
-            $scope.no_of_question = $scope.no_of_question + 1;
+            q7 = q7+1;
+              if(q7 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
             if(ans == "A" && a7 == 0){
               a7 = a7 + 1;
                 if($scope.correct_answred == 0){
@@ -228,7 +249,11 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
               }
             break;
         case "8":
-            $scope.no_of_question = $scope.no_of_question + 1;
+            q8 = q8+1;
+              if(q8 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
             if(ans == "B" && a8 == 0){
               a8 = a8 + 1;
                 if($scope.correct_answred == 0){
@@ -245,7 +270,11 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
             break;
         case "9":
             //$("#q_9 input[type=radio]").attr("disabled", true);
-            $scope.no_of_question = $scope.no_of_question + 1;
+            q9 = q9+1;
+              if(q9 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
             if(ans == "D" && a9 == 0){
               a9 = a9 + 1;
                 if($scope.correct_answred == 0){
@@ -262,7 +291,11 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
             break;
         case "10":
             //$("#q_10 input[type=radio]").attr("disabled", true);
-            $scope.no_of_question = $scope.no_of_question + 1;
+            q10 = q10+1;
+              if(q10 == 1) {
+                $scope.no_of_question = $scope.no_of_question + 1;
+                $scope.un_answered = 10 - $scope.no_of_question
+              }
             if(ans == "A" && a10 == 0){
               a10 = a10 + 1;
                 if($scope.correct_answred == 0){
