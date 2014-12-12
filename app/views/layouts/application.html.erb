@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myapplication">
+<head>
+  <title>Rails4CrudWithAngularjs</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="row">
+	  <nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">
+		      	<img src="/assets/home.png" height="20px" width="20px">
+		      </a>
+			  <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#/users">Users</a></li>
+		        <li> <a href="#/exams">Exam</a> </li>
+		      </ul>
+		    </div>
+		  </div>
+
+	  </nav>
+
+  </div>
+  <div class="container" ng-view>
+    <%= yield %>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<div class="row">
+<div class='ng-modal-overlay' ng-click='hideModal()'></div>
+<div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div>
+<div class='ng-modal-dialog-content' ng-transclude></div></div></div>
+<modal-dialog show='modalShown' width='700px' height='60%'>
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr>
+                <th>First Name</th>
+                <td>{{user.first_name}}</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{user.last_name}}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{user.email}}</td>
+                
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{user.phone}}</td>
+            </tr>
+        </table>
+        <h3 class="block"> {{user.first_name | capitalize:true }} Address </h3>
+        <table ng-repeat="address in user.addresses" class="table">          
+            <tr >
+                <th> Address1 </th>
+                <td> {{address.street1}}</td>
+            </tr>
+            <tr >
+                <th> Address2 </th>
+                <td> {{address.street2}}</td>
+            </tr>
+            <tr >
+                <th> City </th>
+                <td> {{address.city}}</td>
+            </tr>
+            <tr >
+                <th> State </th>
+                <td> {{address.state}}</td>
+            </tr>
+            <tr >
+                <th> Country </th>
+                <td> {{address.country}}</td>
+            </tr>
+            <tr >
+                <th> Zipcode </th>
+                <td> {{address.zipcode}}</td>
+            </tr>
+        </table>
+</div>
+</modal-dialog>

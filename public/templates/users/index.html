@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-md-12">
+        <!-- View page for show action -->
+        <modal-dialog show='modalShown' width='700px' height='80%' overflow-y="scroll"> <!-- Modal Box open here -->
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <tr>
+                        <th>First Name</th>
+                        <td>{{user.first_name | capitalize}}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{user.last_name | capitalize }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{user.email}}</td>
+                        
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{user.phone}}</td>
+                    </tr>
+                </table>
+                <h3 class="block"> {{user.first_name | capitalize:true }} Address </h3> <!-- User Address -->
+                <table ng-repeat="address in user.addresses" class="table">          
+                    <tr >
+                        <th> Address1 </th>
+                        <td> {{address.street1 | capitalize }}</td>
+                    </tr>
+                    <tr >
+                        <th> Address2 </th>
+                        <td> {{address.street2 | capitalize }}</td>
+                    </tr>
+                    <tr >
+                        <th> City </th>
+                        <td> {{address.city | capitalize }}</td>
+                    </tr>
+                    <tr >
+                        <th> State </th>
+                        <td> {{address.state | capitalize}}</td>
+                    </tr>
+                    <tr >
+                        <th> Country </th>
+                        <td> {{address.country | capitalize}}</td>
+                    </tr>
+                    <tr >
+                        <th> Zipcode </th>
+                        <td> {{address.zipcode}}</td>
+                    </tr>
+                </table>
+            </div>
+        </modal-dialog>
+        <!-- View page for show action completed -->
+
+        <!-- Index action goes here -->
+        <div class="col-md-6">
+                <!-- Listing all users here -->
+            <h3 class="block">Users</h3> 
+            <table class="table table-hover">
+                <tr>
+                    <th>First Name</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+                <tr ng-hide="users.length" >
+                    <td colspan="3">No users found, Please create one.</td>
+                </tr>
+                <tr ng-show="users.length" ng-repeat="user in users" class="success">
+                    <td>{{user.first_name | capitalize}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <a href="javaScript:void(0)" ng-click="toggleModal(user.id)"><img src="/assets/show.png"></a> |<a href="#/users/{{user.id}}/edit"><img src="/assets/edit.png"></a> | <a href="" ng-click="deleteUser(user.id)"><img src="/assets/delete.png"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+            <!-- Creation and Edit/update action goes here -->
+        <div class="col-md-6">
+            <div class="user_create" ng-controller="UserAddCtr">
+                <div class="col-md-10">
+                    <div ng-if="flag=='1'"> <!-- form rendering for Create action -->
+                        <form class="tab-pane active form-horizontal" id="first2" name="userForm" novalidate ng-submit="save()" >
+                            <h3 class="block">Add new user</h3>
+                            <div ng-include src="'/templates/users/_form.html'"></div>
+                        </form>
+                    </div>
+                    <div ng-if="flag=='2'"> <!-- Form rendering for Update action -->
+                        <form class="tab-pane active form-horizontal" id="first1" name="userForm" novalidate ng-submit="update()" >
+                            <h3 class="block">Edit user</h3>
+                            <div ng-include src="'/templates/users/_form.html'"></div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+    </div>
+</div>

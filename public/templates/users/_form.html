@@ -1,0 +1,87 @@
+<div class="form-group" ng-class="{'has-error' : submitted && userForm.first_name.$invalid}">
+    <label class="control-label col-md-3">First Name <span class="required">* </span> </label>
+    <div class="col-md-5">
+        <input type="text" name="first_name" class="form-control" ng-model="user.first_name" required placeholder="first name"/>
+    </div>
+    <p ng-show=" submitted && userForm.first_name.$invalid" class="help-block">First name is required.</p>
+</div>
+<div class="form-group" ng-class="{'has-error' : submitted && userForm.last_name.$invalid}">
+    <label class="control-label col-md-3">Last Name <span class="required">* </span> </label>
+    <div class="col-md-5">
+        <input type="text" name="last_name" class="form-control" ng-model="user.last_name" required placeholder="last name"/>
+    </div>
+    <p ng-show=" submitted && userForm.last_name.$invalid" class="help-block">Last name is required.</p>
+</div>
+<div class="form-group" ng-class="{'has-error' : submitted && userForm.email.$invalid}">
+    <label class="control-label col-md-3">Email <span class="required">* </span> </label>
+    <div class="col-md-5">
+        <input type="email" name="email" class="form-control" ng-model="user.email" required placeholder="test@example.com"/>
+    </div>
+    <p ng-show="submitted && userForm.email.$error.required" class="help-block">Email is required.</p>
+    <p ng-show="submitted && userForm.email.$error.email" class="help-block">Enter valid email</p>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">Phone </label>
+    <div class="col-md-5">
+        <input type="text" name="phone" class="form-control" ng-model="user.phone" placeholder="9959123556"/>
+    </div>
+    <p ng-show="submitted && userForm.phone.$invalid" class="help-block">Phone is required.</p>
+</div>
+
+<div ng-repeat="address in user.addresses">
+    <div ng-hide="address._destroy">
+        <div class="form-group">
+            <label class="control-label col-md-3">Address 1 </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" ng-model="address.street1" placeholder="Address 1"/>
+            </div>
+            <div class="col-md-1">
+                <a ng-click="removeAddress($index, user)" class="btn btn-xs btn-danger">X</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Address 2 </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" ng-model="address.street2" placeholder="Address 2"/>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">City </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" ng-model="address.city" placeholder="Rajahmundry"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">State </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" ng-model="address.state" placeholder="AP"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Country</label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" ng-model="address.country" placeholder="India"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Zipcode </label>
+            <div class="col-md-5">
+                <input type="text" class="form-control" ng-model="address.zipcode" placeholder="12355"/>
+            </div>
+        </div>
+        <hr/>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-12">
+        <a ng-click="addAddress()" class="btn btn-success btn-xs">+ Add address </a>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="pull-left">
+        <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-primary sub_user" ng-click="submitted=true">Submit</button>
+    </div>
+</div>
+
