@@ -1,0 +1,35 @@
+<h1> Welocme to Dashboard </h1>
+<div class="span10 well" ng-repeat="todo in assigned_todos">
+	<div class="span4">
+	 	{{todo.todo_thread}} 
+				<span > 
+					<a data-reveal-id="myModal1_{{todo.id}}" class="add_ins"> <img src="/assets/comment.png" title="Click to Add Comment" class="todo_id"/> </a>
+							<div id="myModal1_{{todo.id}}" class="reveal-modal" >
+										<form name="addCommentForm" >
+											<fieldset>
+												<label>Comment</label>
+												<textarea ng-model='comment.comment' style="width:450px; height: 300px;" class="comment_box"> </textarea>
+												<button type="submit" class="btn btn-primary" ng-click="create(comment, todo.id)" ng-disabled="addCommentForm.$invalid">Submit</button>
+											</fieldset>
+										</form>
+									<a class="close-reveal-modal">&#215;</a>
+							</div>
+						
+					</a>
+  			</span> 
+	</div>
+	<div class="span2">
+		Project - {{todo.project_id}}
+	</div>
+	<div class="span3 pull-right">
+			<a href="/#/todos/{{todo.id}}" title="Click to View Comments for this Todo"> Comments </a>
+	</div>
+</div>
+
+<style>
+	#demo {
+		display: none;
+		font-size: 20px;
+		color: green;
+	}
+</style>

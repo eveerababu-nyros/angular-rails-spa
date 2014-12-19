@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'spring',        group: :development
+gem 'devise', '~> 3.2'
 
 group :production do
   gem "pg"

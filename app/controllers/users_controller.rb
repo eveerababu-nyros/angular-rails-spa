@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_admin!
   before_action :get_user, except: [:index, :create]
   respond_to :html, :json
 

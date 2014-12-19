@@ -1,13 +1,36 @@
 Rails.application.routes.draw do
+
+  devise_for :admins
+  resources :users
+
+  root 'users#index'
   resources :exams
+
+
+  namespace :api, defaults: {format: :json} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+
+      devise_scope :admin do
+        match '/sessions' => 'sessions#create', :via => :post
+        match '/sessions' => 'sessions#destroy', :via => :delete
+      end
+
+      resources :record
+
+      resources :admins, only: [:create]
+      match '/admins' => 'admins#update', :via => :put
+      match '/admins' => 'admins#destroy', :via => :delete
+      match '/api/v1/admins' => 'admins#index', :via => :get
+    end
+  end
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :users
-
-  root 'users#index'
+ 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

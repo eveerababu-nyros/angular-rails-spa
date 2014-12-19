@@ -1,4 +1,5 @@
 class ExamsController < ApplicationController
+  before_filter :authenticate_admin!
   before_action :set_exam, only: [:show, :edit, :update, :destroy]
 
   # GET /exams

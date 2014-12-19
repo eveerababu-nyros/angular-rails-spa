@@ -1,13 +1,24 @@
-<h1> Welcome to Online test </h1> <hr/>
+<h1> Welcome to Online test <a href="javaScript:void(0)" class="pull-right btn btn-sm btn-success" ng-click="show_result()"> Submit </a> <a href="#/exams/" class="pull-right btn btn-sm btn-info" style="margin-right: 10px;"> Reset </a></h1> 
+ <hr/>
 <div class="row">
-	<div class="col-md-12">
-			<div class="col-md-8">
+	<div class="col-md-12"> 
+
+			<div class="col-md-8"> 
 				<div class="question"> 1. Who is our Prime Minsiter </div> 
 				 <div class="answer">
 					 <input type="radio" ng-model="que1" value="11" ng-click="exam_answer('1_A')" /> <strong> A. </strong> Manmohan Singh 
 	        		 <input type="radio" ng-model="que1" value="12" ng-click="exam_answer('1_B')" /> <strong> B. </strong> Prathiba Patel 
 	        		 <input type="radio" ng-model="que1" value="13" ng-click="exam_answer('1_C')" /> <strong> C. </strong> Narendra Modi 
 	        		 <input type="radio" ng-model="que1" value="14" ng-click="exam_answer('1_D')" /> <strong> D. </strong> Vajpayee 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		Prime Minsiter for India is <strong> Sir. Narendra Modi </strong> <p class="correctAnswer"> Answer is: (C) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
         		 </div>
 
         		 <div class="question"> 2. Who is the author of the novel 'A Girl is a Half-formed Thing' </div> 
@@ -16,6 +27,15 @@
 	        		<input type="radio" ng-model="que2" value="22" ng-click="exam_answer('2_B')" /> <strong> B. </strong> Anjali Prasad 
 	        		<input type="radio" ng-model="que2" value="23" ng-click="exam_answer('2_C')" /> <strong> C. </strong> Sujatha Singh 
 	        		<input type="radio" ng-model="que2" value="24" ng-click="exam_answer('2_D')" /> <strong> D. </strong> None of these 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		Author of the novel 'A Girl is a Half-formed Thing' is <strong> Eimear McBride </strong> <p class="correctAnswer"> Answer is: (A) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
         		 </div>
 
         		 <div class="question"> 3. The Election Commission conducts election to the? </div> 
@@ -24,6 +44,16 @@
 	        		<input type="radio" ng-model="que3" value="12" ng-click="exam_answer('3_B')" /> <strong> B. </strong> State Legislatures
 	        		<input type="radio" ng-model="que3" value="13" ng-click="exam_answer('3_C')" /> <strong> C. </strong> Office of the President 
 	        		<input type="radio" ng-model="que3" value="14" ng-click="exam_answer('3_D')" /> <strong> D. </strong> All the above 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		Election Commission conducts election to the <strong> Parliament, State Legislatures, Office of the President </strong> <p class="correctAnswer"> Answer is: (D) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
         		 </div>
 
         		 <div class="question"> 4. The International Rice Research Institute is in? </div> 
@@ -32,6 +62,16 @@
 	        		<input type="radio" ng-model="que4" value="12" ng-click="exam_answer('4_B')" /> <strong> B. </strong> Mexico 
 	        		<input type="radio" ng-model="que4" value="13" ng-click="exam_answer('4_C')" /> <strong> C. </strong> Japan 
 	        		<input type="radio" ng-model="que4" value="14" ng-click="exam_answer('4_D')" /> <strong> D. </strong> Philippines 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		International Rice Research Institute is in <strong> Philippines </strong> <p class="correctAnswer"> Answer is: (D) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
         		 </div>
 
         		 <div class="question"> 5. Neermahal is a formal royal place situated in? </div> 
@@ -40,6 +80,16 @@
 	        		<input type="radio" ng-model="que5" value="12" ng-click="exam_answer('5_B')" /> <strong> B. </strong> Tripura 
 	        		<input type="radio" ng-model="que5" value="13" ng-click="exam_answer('5_C')" /> <strong> C. </strong> Gujarat 
 	        		<input type="radio" ng-model="que5" value="14" ng-click="exam_answer('5_D')" /> <strong> D. </strong> Manipur 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		Neermahal is a formal royal place situated in <strong> Tripura </strong> <p class="correctAnswer"> Answer is: (B) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
         		 </div>
 
         		 <div class="question"> 6. FAO is a part of? </div> 
@@ -48,6 +98,16 @@
 	        		<input type="radio" ng-model="que6" value="12" ng-click="exam_answer('6_B')" /> <strong> B. </strong> Asian Development Bank 
 	        		<input type="radio" ng-model="que6" value="13" ng-click="exam_answer('6_C')" /> <strong> C. </strong> UNO 
 	        		<input type="radio" ng-model="que6" value="14" ng-click="exam_answer('6_D')" /> <strong> D. </strong> World Trade Organization 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		FAO is a part of <strong> UNO </strong> <p class="correctAnswer"> Answer is: (C) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
         		 </div>
 
         		 <div class="question"> 7. What is the no.of Rajyasabha members allotted to the newly created state of Telangana?</div> 
@@ -56,6 +116,17 @@
 	        		<input type="radio" ng-model="que7" value="12" ng-click="exam_answer('7_B')" /> <strong> B. </strong> 11 
 	        		<input type="radio" ng-model="que7" value="13" ng-click="exam_answer('7_C')" /> <strong> C. </strong> 12 
 	        		<input type="radio" ng-model="que7" value="14" ng-click="exam_answer('7_D')" /> <strong> D. </strong> 18 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		The no.of Rajyasabha members allotted to the newly created state of Telangana is <strong> 7 </strong> <p class="correctAnswer"> Answer is: (A) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
+
         		 </div>
 
         		 <div class="question"> 8. Kamal Chawla was associated with? </div> 
@@ -64,6 +135,17 @@
 	        		<input type="radio" ng-model="que8" value="12" ng-click="exam_answer('8_B')" /> <strong> B. </strong> Snooker 
 	        		<input type="radio" ng-model="que8" value="13" ng-click="exam_answer('8_C')" /> <strong> C.</strong> Chess  
 	        		<input type="radio" ng-model="que8" value="14" ng-click="exam_answer('8_D')" /> <strong> D. </strong> Kabbadi 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		Kamal Chawla was associated with <strong> Snooker </strong> <p class="correctAnswer"> Answer is: (B) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
+
         		 </div>
 
         		 <div class="question"> 9. Capital of Andhra Pradesh is? </div> 
@@ -72,6 +154,17 @@
 	        		<input type="radio" ng-model="que9" value="12" ng-click="exam_answer('9_B')" /> <strong> B. </strong> Vijayawada 
 	        		<input type="radio" ng-model="que9" value="13" ng-click="exam_answer('9_C')" /> <strong> C. </strong> Tenali 
 	        		<input type="radio" ng-model="que9" value="14" ng-click="exam_answer('9_D')" /> <strong> D. </strong> VGTM 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		Capital of Andhra Pradesh is <strong> VGTM </strong> <p class="correctAnswer"> Answer is: (D) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
+
         		 </div>
 
         		 <div class="question"> 10. International Telecommunication Union(ITU) is headquartered in? </div> 
@@ -80,16 +173,34 @@
 	        		<input type="radio" ng-model="que10" value="12" ng-click="exam_answer('10_B')" /> <strong> B. </strong> Berne 
 	        		<input type="radio" ng-model="que10" value="13" ng-click="exam_answer('10_C')" /> <strong> C. </strong> Vienna 
 	        		<input type="radio" ng-model="que10" value="14" ng-click="exam_answer('10_D')" /> <strong> D. </strong> Paris 
+
+	        		<div class="ansBlock">
+		        		 <div class="ans" title="Click to See Answer"> See Answer </div>
+		        		 <div class="innerAnsBlock"> 
+		        		 	<div>
+		        		 		International Telecommunication Union(ITU) is headquartered in <strong> Geneva </strong> <p class="correctAnswer"> Answer is: (A) </p>
+		        		 	</div>
+		        		 </div>
+		        	</div>
+
         		 </div>
 			</div>
 			<div class="col-md-4">
-				<div class="success res-block">
+				<div class="success res-block" ng-show="showResult"> 
+					<p class="result_panel"> Result Panel </p>
 					<p> No. of Questions Answered : {{no_of_question}} </p>
 					<p> No. of Questions Un-Answered : {{un_answered}} </p>
-					<br/>
-					<p> Correct Answered : {{correct_answred}} </p>
+					<p> Correct Answered: {{correct_answred}} </p>
 				</div>
 			</div>
 
 	</div>
 </div>
+
+<script>
+	$(function(){
+		$(".ans").click(function(){
+			$(this).next(".innerAnsBlock").toggle(1000);
+		});
+	});
+</script>

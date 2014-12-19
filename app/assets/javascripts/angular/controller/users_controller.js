@@ -1,10 +1,94 @@
 var myApp = angular.module('myapplication', ['ngRoute', 'ngResource']); 
 
+//Configuration
+
+var login_test = false;
+
 //Custom Filter for capitalize first letter in a string
 myApp.filter('capitalize', function() {
     return function(input, all) {
       return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
     }
+});
+
+
+myApp.factory('Records', function($resource) {
+        return $resource('/api/record.json', {}, {
+            index: { method: 'GET', isArray: true},
+            create: { method: 'POST' }
+        });
+})
+.factory('Secure', function($resource){
+    return $resource('/api/record/:record_id.json', {}, {
+      show: { method: 'GET' },
+      update: { method: 'PUT' },
+      destroy: { method: 'DELETE' }
+   });
+});
+
+
+
+myApp.factory('Session', function($location, $http, $q) {
+        // Redirect to the given url (defaults to '/')
+    $loggedin = false;
+        function redirect(url) {
+            url = url || '/admin/login';
+            $location.path(url);
+        }
+        var service = {
+            login: function(email, password) {
+               // alert("1");
+                return $http.post('/api/sessions', {admin: {email: email, password: password} })
+                    .then(function(response) {
+                        //alert("2")
+                        service.currentAdmin = response.data.admin;
+                        if (service.isAuthenticated()) {
+                            //alert("3");
+                              login_test = true;
+                                $loggedin= true
+                                $location.path('/users');
+                            }
+                        });
+            },
+
+            logout: function(redirectTo) {
+                $http.delete('/api/sessions').then(function(response) {
+                    $http.defaults.headers.common['X-CSRF-Token'] = response.data.csrfToken;
+                    console.log(service.currentAdmin)
+                    service.currentAdmin = null;
+                    login_test = false;
+                    redirect(redirectTo);
+                });
+            },
+
+            register: function(email, password, confirm_password) {
+                return $http.post('/api/admins', {admin: {email: email, password: password, password_confirmation: confirm_password} })
+                .then(function(response) {
+                    service.currentAdmin = response.data;
+                    if (service.isAuthenticated()) {
+                        $loggedin = true;
+                            $location.path('/users');
+                    }
+                });
+            },
+            requestCurrentAdmin: function() {
+                if (service.isAuthenticated()) {
+                    return $q.when(service.currentAdmin);
+                } else {
+                    return $http.get('/api/admins').then(function(response) {
+                        service.currentAdmin = response.data.admin;
+                        return service.currentAdmin;
+                    });
+                }
+            },
+
+            currentAdmin: null,
+
+            isAuthenticated: function(){
+                return !!service.currentAdmin;
+            }
+        };
+        return service;
 });
 
 
@@ -49,9 +133,64 @@ myApp.factory('User', ['$resource', function($resource){
 
 //Controllers
 
-// User list controller here user show, edit, create, index were rendering
-myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'Users', 'User', '$location', function($scope, $http, $resource, Users, User, $location) {
 
+myApp.controller("AppCtrl", ['$scope', 'Session', '$rootScope', function($scope, Session, $rootScope) {
+  "use strict";
+
+    $scope.$on('event:unauthorized', function(event) {
+        console.log('unauthorized');
+    });
+    $scope.$on('event:authenticated', function(event) {
+        console.log('authenticated');
+    });
+}]);
+
+
+myApp.controller("AdminCtrl", ['$scope', 'Session', function($scope, Session) {
+    $loggedin = false;
+    $scope.login = function(admin) {
+      //alert();
+        $scope.authError = null;
+        Session.login(admin.email, admin.password)
+        .then(function(response) {
+            if (!response) {
+                $scope.authError = 'Credentials are not valid';
+            } else {
+                console.log(response);
+                $loggedin = true;
+                //alert("entered");
+                $scope.authError = 'Success!';
+            }
+        }, function(response) {
+            $scope.authError = 'Server offline, please try later';
+        });
+    };
+
+    $scope.logout = function(admin) {
+        $loggedin = false;
+        alert("")
+        Session.logout(admin);
+    };
+
+    $scope.register = function(admin) {
+        $scope.authError = null;
+        Session.register(admin.email, admin.password, admin.confirm_password)
+            .then(function(response) {
+               console.log(response);
+            }, function(response) {
+                var errors = '';
+                $.each(response.data.errors, function(index, value) {
+                    errors += index.substr(0,1).toUpperCase()+index.substr(1) + ' ' + value + ''
+                });
+                $scope.authError = errors;
+            });
+    };
+}]);
+
+// User list controller here user show, edit, create, index were rendering
+myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'Users', 'User', '$location','Session', function($scope, $http, $resource, Users, User, $location,Session) {
+if(login_test)
+{
   $scope.users = Users.query();
 
   $scope.modalShown = false;
@@ -69,15 +208,21 @@ myApp.controller("UserListCtr", ['$scope', '$http', '$resource', 'Users', 'User'
       });
     }
   };
+}
+else{
+  $location.path('/admins/login')
+}
+  
 }]);
 
 
-myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', function($scope, $http, $resource, $routeParams) {
-
-  $scope.no_of_question = 0;
+myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$location','$routeParams', 'Session', function(Session, $scope, $http, $location, $resource, $routeParams) {
+$scope.showResult = false;
+ $scope.no_of_question = 0;
   $scope.correct_answred = 0;
   $scope.un_answered = 0;
-
+if(login_test)
+{
   var q1 = 0;
   var q2 = 0;
   var q3 = 0;
@@ -101,6 +246,7 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
   var a10 = 0;
 
   $scope.exam_answer = function(res) {
+    $scope.showResult = false;
     var que = res.split("_")[0];
     var ans = res.split("_")[1]
     //Updating no_of_question varaible 
@@ -314,6 +460,18 @@ myApp.controller("ExamCtrl", ['$scope', '$http', '$resource', '$routeParams', fu
   }
 
   
+  $scope.show_result = function(){
+    //alert("entered");
+    //alert($scope.correct_answred);
+    $scope.showResult = true;
+  }
+}
+else {
+  $location.path('/users')
+  //$window.location.href = "http://localhost:3000/"
+
+}
+  
   
 
 }]);
@@ -412,6 +570,29 @@ myApp.controller("UserAddCtr", ['$scope', '$resource', 'Users', 'User', '$locati
 
 //Routes
 myApp.config([
+  '$httpProvider', function(provider){
+    provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+    var interceptor = ['$location', '$rootScope', '$q', function($location, $rootScope, $q) {
+            function success(response) {
+                return response
+            };
+
+            function error(response) {
+                if (response.status == 401) {
+                    $rootScope.$broadcast('event:unauthorized');
+                    $location.path('/admins/login');
+                    return response;
+                };
+                return $q.reject(response);
+            };
+
+            return function(promise) {
+                return promise.then(success, error);
+            };
+        }];
+        //provider.responseInterceptors.push(interceptor);
+  }])
+  .config([
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.when('/users',{
       templateUrl: '/templates/users/index.html',
@@ -425,8 +606,17 @@ myApp.config([
       templateUrl: '/templates/exam/index.html',
       controller: "ExamCtrl"
     });
+    $routeProvider.when('/', {
+      templateUrl:'/templates/home/index.html'
+    });
+    $routeProvider.when('/admins/login', {
+      templateUrl:'/templates/admins/login.html', 
+      controller:"AdminCtrl"});
+    $routeProvider.when('/admins/register', {
+      templateUrl:'/templates/admins/register.html', 
+      controller:"AdminCtrl"});
     $routeProvider.otherwise({
-      redirectTo: '/users'
+      redirectTo: '/'
     });
   }
 ]);

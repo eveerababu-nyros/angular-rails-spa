@@ -65,11 +65,11 @@
 	font: 12px/10px arial;
 	margin-left: 20px;
 	word-spacing: 4px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 .res-block {
 	height: 200px;
-	border: 1px solid lightgreen;
+	border: 2px dotted green;
 	background: lightgreen;
 	box-shadow: 4px 4px solid green;
 	padding: 10px;
@@ -78,4 +78,32 @@
 .res-block p {
 	font-weight: 500;
 	font: 13px/20px arial;
+}
+
+.ansBlock {
+  padding: 10px 10px 0px 10px;
+}
+.ans{
+  font: 14px/20px arial;
+  font-weight: 800;
+  cursor: pointer;
+  color: green;
+  margin-bottom: 5px;
+}
+.innerAnsBlock{
+  display:none;
+  border: 2px dotted green;
+  padding: 10px;
+}
+
+.correctAnswer {
+  color: green;
+  font-weight: 800;
+  padding: 10px 5px 0px 10px;
+}
+
+.result_panel{
+  font: 16px/20px arial !important;
+  color: green;
+  padding: 2px;
 }
